@@ -1,0 +1,26 @@
+.footer {
+  text-align: center;
+  padding: 4rem 1.5rem 3.5rem;
+  border-top: 1px solid var(--brass-dim);
+  margin-top: 2rem;
+}
+
+.crest {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.4em;
+  color: var(--bone-dim);
+  margin-bottom: 0.8rem;
+}
+
+.crest b {
+  color: var(--blood-bright);
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  color: var(--ash);
+  text-transform: uppercase;
+}

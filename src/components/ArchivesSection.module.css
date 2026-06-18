@@ -1,0 +1,60 @@
+.archiveGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+.locked {
+  border: 1px dashed var(--brass-dim);
+  padding: 1.4rem 1.3rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ash);
+  font-size: 0.7rem;
+  line-height: 1.8;
+}
+
+.locked b {
+  display: block;
+  color: var(--bone-dim);
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  margin-bottom: 0.3rem;
+}
+
+.tag {
+  color: var(--blood);
+}
+
+.unlocked {
+  border-style: solid;
+  border-color: var(--blood);
+  padding: 0;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.unlockedLink {
+  display: block;
+  padding: 1.4rem 1.3rem;
+  color: var(--ash);
+}
+
+.unlockedLink b {
+  display: block;
+  color: var(--bone);
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  margin-bottom: 0.3rem;
+}
+
+.unlocked:hover,
+.unlocked:focus-within {
+  border-color: var(--blood-bright);
+  background: var(--panel);
+}
+
+.tagOpen {
+  color: var(--blood-bright);
+}

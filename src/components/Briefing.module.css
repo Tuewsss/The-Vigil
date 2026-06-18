@@ -1,0 +1,64 @@
+.briefing {
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-left: 3px solid var(--blood);
+  padding: clamp(1.6rem, 4vw, 2.8rem);
+  margin-top: 1rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.stamp {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  color: var(--ash);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.4rem;
+  border-bottom: 1px dashed var(--brass-dim);
+}
+
+.briefing p {
+  color: var(--bone-dim);
+  margin-bottom: 1rem;
+  max-width: none;
+}
+
+.briefing p:last-child {
+  margin-bottom: 0;
+}
+
+.aside {
+  color: var(--ash);
+  font-style: italic;
+  font-size: 0.96rem;
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--brass-dim);
+}
+
+.briefing strong {
+  color: var(--bone);
+}
+
+.endStamp {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  color: var(--ash);
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 1.2rem;
+  margin-top: 0.4rem;
+  border-top: 1px dashed var(--brass-dim);
+}
+
+.endStamp .tag {
+  display: block;
+  color: var(--blood-bright);
+  letter-spacing: 0.3em;
+  margin-bottom: 0.5rem;
+}

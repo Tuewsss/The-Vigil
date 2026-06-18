@@ -1,0 +1,177 @@
+.oath {
+  margin-top: 2.5rem;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-top: 3px solid var(--brass);
+  padding: clamp(1.8rem, 4vw, 3rem);
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  transition: background 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  letter-spacing: 0.06em;
+  color: var(--bone);
+  margin-bottom: 1.6rem;
+  transition: color 0.6s ease, text-shadow 0.6s ease;
+}
+
+.lines p {
+  color: var(--bone-dim);
+  max-width: none;
+  margin-bottom: 0.9rem;
+  transition: color 0.6s ease;
+}
+
+.lines p:last-child {
+  margin-bottom: 0;
+}
+
+.latin {
+  display: block;
+  width: 100%;
+  margin-top: 1.8rem;
+  padding-top: 1.4rem;
+  border: none;
+  border-top: 1px dashed var(--brass-dim);
+  background: none;
+  font-family: var(--font-mono);
+  letter-spacing: 0.14em;
+  color: var(--blood-bright);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.latin:hover,
+.latin:focus-visible {
+  color: var(--bone);
+  text-shadow: 0 0 12px rgba(164, 22, 26, 0.85);
+}
+
+.translation {
+  font-style: italic;
+  color: var(--ash);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.hint {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-top: 1.4rem;
+  opacity: 0.6;
+}
+
+/* ---------- oath transition: dissolve out, then form back in ---------- */
+.dissolving .title,
+.dissolving .lines p,
+.dissolving .latin,
+.dissolving .translation,
+.dissolving .hint {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(-8px);
+  transition: opacity 0.36s ease, filter 0.36s ease, transform 0.36s ease;
+}
+
+.forming .title,
+.forming .lines p,
+.forming .latin,
+.forming .translation,
+.forming .hint {
+  opacity: 0;
+  animation: materialize 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes materialize {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(14px) scale(0.98);
+    letter-spacing: 0.18em;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+    letter-spacing: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dissolving .title,
+  .dissolving .lines p,
+  .dissolving .latin,
+  .dissolving .translation,
+  .dissolving .hint,
+  .forming .title,
+  .forming .lines p,
+  .forming .latin,
+  .forming .translation,
+  .forming .hint {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    letter-spacing: inherit;
+    transition: none;
+    animation: none;
+  }
+}
+
+/* ---------- ancient oath: a darker, blood-soaked tone ---------- */
+.ancient {
+  background:
+    radial-gradient(ellipse at 18% 0%, rgba(124, 22, 32, 0.35), transparent 55%),
+    radial-gradient(ellipse at 85% 100%, rgba(124, 22, 32, 0.25), transparent 60%),
+    var(--void);
+  border-color: var(--blood);
+  border-top: 3px solid var(--blood-bright);
+  box-shadow: 0 0 0 1px rgba(164, 22, 26, 0.25), 0 24px 70px rgba(124, 22, 32, 0.4), inset 0 0 90px rgba(124, 22, 32, 0.18);
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.ancient .title {
+  color: var(--blood-bright);
+  text-shadow: 0 0 18px rgba(164, 22, 26, 0.75), 0 0 2px rgba(164, 22, 26, 0.9);
+  letter-spacing: 0.08em;
+}
+
+.ancient .lines p {
+  color: var(--bone);
+}
+
+.ancient .latin {
+  border-top: 1px solid var(--blood);
+  color: var(--blood-bright);
+  text-shadow: 0 0 10px rgba(164, 22, 26, 0.6);
+}
+
+.ancient .latin:hover,
+.ancient .latin:focus-visible {
+  color: #ffb3b6;
+  text-shadow: 0 0 16px rgba(255, 30, 40, 0.85);
+}
+
+.ancient .translation {
+  color: var(--blood);
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px rgba(164, 22, 26, 0.2), 0 24px 70px rgba(124, 22, 32, 0.35), inset 0 0 90px rgba(124, 22, 32, 0.14);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(164, 22, 26, 0.4), 0 24px 80px rgba(124, 22, 32, 0.55), inset 0 0 110px rgba(124, 22, 32, 0.24);
+  }
+}

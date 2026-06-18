@@ -1,0 +1,220 @@
+.wrapper {
+  overflow-x: auto;
+  padding: 0.5rem 0 2rem;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.wrapper.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.dragHint {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-top: 0.6rem;
+}
+
+.tree,
+.tree ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tree {
+  padding-top: 0.5rem;
+  min-width: max-content;
+}
+
+.tree ul {
+  position: relative;
+  padding-top: 2.6rem;
+}
+
+.tree li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 2.6rem 1.2rem 0;
+}
+
+.tree li::before,
+.tree li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: 50%;
+  height: 2.6rem;
+  border-top: 2px solid var(--blood);
+}
+
+.tree li::after {
+  right: auto;
+  left: 50%;
+  border-left: 2px solid var(--blood);
+}
+
+.tree li:first-child::before,
+.tree li:last-child::after {
+  border: 0 none;
+}
+
+.tree li:last-child::before {
+  border-right: 2px solid var(--blood);
+  border-radius: 0 4px 0 0;
+}
+
+.tree li:first-child::after {
+  border-radius: 4px 0 0 0;
+}
+
+.tree li:only-child::before,
+.tree li:only-child::after {
+  display: none;
+}
+
+.tree li:only-child {
+  padding-top: 0;
+}
+
+.tree > li {
+  padding-top: 0;
+}
+
+.tree > li::before,
+.tree > li::after {
+  display: none;
+}
+
+/* vertical drip connecting a parent card to its children row */
+.tree ul::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 2.6rem;
+  border-left: 2px solid var(--blood);
+}
+
+/* ---------- married couple ---------- */
+.couple {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.bond {
+  font-size: 1.1rem;
+  color: var(--blood);
+  opacity: 0.8;
+}
+
+/* ---------- member card ---------- */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-top: 3px solid var(--ash);
+  padding: 0.9rem 1rem;
+  width: 200px;
+  height: 136px;
+  text-align: center;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+}
+
+.nameLine {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.alive {
+  border-top-color: var(--blood-bright);
+}
+
+.statusMark {
+  display: inline-block;
+  font-size: 0.85em;
+}
+
+.crown {
+  display: inline-block;
+  font-size: 0.85em;
+  color: var(--blood-bright);
+}
+
+.alive .statusMark {
+  color: var(--blood-bright);
+}
+
+.dead {
+  opacity: 0.75;
+}
+
+.dead .statusMark {
+  color: var(--ash);
+}
+
+.dead .name {
+  color: var(--ash);
+  text-decoration: line-through;
+  text-decoration-color: var(--blood);
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.98rem;
+  letter-spacing: 0.02em;
+  color: var(--bone);
+}
+
+.role {
+  display: block;
+  font-style: italic;
+  color: var(--brass);
+  font-size: 0.78rem;
+  margin-top: 0.3rem;
+}
+
+.years {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--ash);
+  text-transform: uppercase;
+  margin-top: 0.35rem;
+}
+
+/* ---------- empty state ---------- */
+.empty {
+  border: 1px dashed var(--brass-dim);
+  padding: 2.6rem 1.5rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
