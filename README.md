@@ -14,7 +14,8 @@ Aqui você encontra o sistema do RPG, as fichas de personagens e as famílias �
 
 ## 🧩 Tecnologias
 
-- **Next.js** (React)
+- **Next.js** (React) com **App Router**
+- **TypeScript**
 
 ## ✅ Antes de começar
 
@@ -27,7 +28,6 @@ Você só vai precisar de:
 
 ```bash
 git clone https://github.com/seu-usuario/a-vigilia.git
-cd a-vigilia
 ```
 
 ## 🚀 Rodando o projeto
@@ -66,9 +66,20 @@ npm run start
 
 O projeto é só uma pasta, bem direto:
 
-( Vou por ainda. )
-
-> 💡 A estrutura acima é um exemplo — ajusta conforme a organização real do seu projeto (Pages Router ou App Router).
+```
+a-vigilia/
+├── public/
+│   └── agents/          # imagens dos personagens (ex: dabi.png)
+├── src/
+│   ├── app/             # páginas (App Router): sistema, personagens, famílias
+│   ├── components/      # componentes reutilizáveis
+│   └── data/            # dados do RPG (personagens, famílias, etc.)
+├── .gitignore
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json
+└── tsconfig.json
+```
 
 ---
 
