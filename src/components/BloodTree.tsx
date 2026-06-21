@@ -1,8 +1,12 @@
 "use client";
 
 import { useRef } from "react";
-import type { FamilyMember, Spouse } from "@/data/houses";
+import type { FamilyMember, GenealogyNode, Spouse, TimeSkipNode } from "@/data/houses";
 import styles from "./BloodTree.module.css";
+
+function isTimeSkip(node: GenealogyNode): node is TimeSkipNode {
+  return (node as TimeSkipNode).kind === "timeskip";
+}
 
 function MemberCard({ member }: { member: FamilyMember | Spouse }) {
   const cardClassName = `${styles.card} ${member.status === "alive" ? styles.alive : styles.dead}`;
@@ -20,7 +24,26 @@ function MemberCard({ member }: { member: FamilyMember | Spouse }) {
   );
 }
 
-function TreeNode({ member }: { member: FamilyMember }) {
+function TimeSkipCard({ node }: { node: TimeSkipNode }) {
+  return (
+    <div className={styles.timeSkip}>
+      <span className={styles.timeSkipTag}>Salto Temporal</span>
+      <span className={styles.timeSkipRule} />
+      {node.year && <span className={styles.timeSkipYear}>{node.year}</span>}
+      <span className={styles.timeSkipLabel}>{node.label}</span>
+    </div>
+  );
+}
+
+function TreeNode({ member }: { member: GenealogyNode }) {
+  if (isTimeSkip(member)) {
+    return (
+      <li>
+        <TimeSkipCard node={member} />
+      </li>
+    );
+  }
+
   return (
     <li>
       {member.spouse ? (

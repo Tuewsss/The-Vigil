@@ -207,6 +207,51 @@
   margin-top: 0.35rem;
 }
 
+/* ---------- time skip marker ---------- */
+.timeSkip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 200px;
+  height: 136px;
+  border: 1px dashed var(--brass-dim);
+  background: linear-gradient(180deg, transparent, rgba(156, 124, 78, 0.07));
+  text-align: center;
+  padding: 0.9rem 1rem;
+}
+
+.timeSkipTag {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--brass);
+  opacity: 0.85;
+}
+
+.timeSkipRule {
+  width: 28px;
+  height: 1px;
+  background: var(--brass-dim);
+}
+
+.timeSkipYear {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--bone-dim);
+}
+
+.timeSkipLabel {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  color: var(--ash);
+}
+
 /* ---------- empty state ---------- */
 .empty {
   border: 1px dashed var(--brass-dim);

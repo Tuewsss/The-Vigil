@@ -15,8 +15,17 @@ export interface FamilyMember {
   role?: string;
   leader?: boolean;
   spouse?: Spouse;
-  children?: FamilyMember[];
+  children?: GenealogyNode[];
 }
+
+export interface TimeSkipNode {
+  id: string;
+  kind: "timeskip";
+  label: string;
+  year?: string;
+}
+
+export type GenealogyNode = FamilyMember | TimeSkipNode;
 
 export interface HistoryChapter {
   title: string;
@@ -157,6 +166,14 @@ export const HOUSES: House[] = [
                 years: "1832–1880",
                 role: "Terceira líder da Vigília — arquiteta da trégua",
                 leader: true,
+                children: [
+                  {
+                    id: "salto-temporal-1880",
+                    kind: "timeskip",
+                    label: "25 anos depois",
+                    year: "1880",
+                  },
+                ],
               },
             ],
           },
@@ -215,6 +232,17 @@ export const HOUSES: House[] = [
         ],
       },
     ],
+  },
+  {
+    slug: "barone",
+    seal: "B",
+    classification: "Casa aliada · Humana · Est. 1879",
+    title: "Barone",
+    epithet: "A mão que costura a trégua",
+    description:
+      "Os diplomatas. Vieram da Itália sem o sangue antigo da ordem e fizeram o que a espada nunca fez: estender a mão ao outro lado. Abriram as portas aos não naturais e teceram as primeiras tréguas — mas os puristas já sussurram que a lealdade dos Barone se divide.",
+    history: [],
+    genealogy: [],
   },
   {
     slug: "demdike",

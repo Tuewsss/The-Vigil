@@ -4,7 +4,7 @@ import sectionStyles from "./Section.module.css";
 import styles from "./Houses.module.css";
 import { getHouse } from "@/data/houses";
 
-const HUMAN_HOUSE_SLUGS = ["clement"];
+const HUMAN_HOUSE_SLUGS = ["clement", "barone"];
 const UNNATURAL_LINEAGE_SLUGS = ["demdike", "chattox", "de-vere", "dragomir"];
 
 export default function HousesSection() {
