@@ -27,6 +27,12 @@ const BRANCHES: SystemBranch[] = [
     title: "Sistema de Trauma",
     description: "O que acontece quando o limite é alcançado — Desespero, Cicatrizes e Trauma Mental.",
   },
+  {
+    href: "/sistema/armas",
+    numeral: "IV",
+    title: "Sistema de Armas",
+    description: "Calibre, lâmina e traço — o catálogo de armas de fogo, brancas e improvisadas da era.",
+  },
 ];
 
 export default function SystemTree() {

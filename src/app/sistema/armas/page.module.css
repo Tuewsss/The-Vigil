@@ -1,0 +1,376 @@
+.back {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  margin-bottom: 2rem;
+  transition: color 0.25s;
+}
+
+.back:hover,
+.back:focus-visible {
+  color: var(--blood-bright);
+}
+
+.header {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.seal {
+  width: 64px;
+  height: 64px;
+  border: 1px solid var(--blood);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.4rem;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--blood);
+  opacity: 0.75;
+}
+
+.classification {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 1.1rem;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 7vw, 4.5rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: var(--bone);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.7);
+}
+
+.epithet {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brass);
+  font-size: clamp(1rem, 2.4vw, 1.3rem);
+  margin-top: 0.8rem;
+}
+
+.lede {
+  margin: 1.6rem auto 0;
+  text-align: center;
+}
+
+/* ---------- chapters ---------- */
+.chapter {
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-left: 3px solid var(--blood);
+  padding: clamp(1.6rem, 4vw, 2.8rem);
+  margin-top: 2.4rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.chapter:first-child {
+  margin-top: 0;
+}
+
+.chapter p {
+  max-width: none;
+}
+
+.chapterTitle {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  letter-spacing: 0.02em;
+  color: var(--blood-bright);
+}
+
+.chapterSubtitle {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: var(--brass);
+  margin-top: 0.4rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px dashed var(--brass-dim);
+}
+
+.chapter > p:first-of-type {
+  margin-top: 0;
+}
+
+/* ---------- results table (damage-by-result) ---------- */
+.results {
+  margin-top: 1.4rem;
+  border: 1px solid var(--panel-edge);
+  background: var(--leather);
+}
+
+.resultsHead {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ash);
+  padding: 1rem 1.4rem;
+  border-bottom: 1px dashed var(--brass-dim);
+}
+
+.resRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.2rem 0.3rem;
+  padding: 1rem 1.4rem;
+  border-bottom: 1px solid var(--panel-edge);
+}
+
+.resRow:last-child {
+  border-bottom: none;
+}
+
+.resRange {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--brass);
+  grid-row: span 2;
+  align-self: center;
+  min-width: 84px;
+}
+
+.resLabel {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--bone);
+  font-size: 1.02rem;
+}
+
+.crit .resLabel {
+  color: var(--blood-bright);
+}
+
+.fail .resLabel {
+  color: var(--ash);
+}
+
+.resMean {
+  color: var(--bone-dim);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+/* ---------- callouts ---------- */
+.callout {
+  background: var(--leather);
+  border: 1px solid var(--panel-edge);
+  border-left: 3px solid var(--blood);
+  padding: 1.3rem 1.5rem;
+  margin-top: 1.3rem;
+}
+
+.calloutTitle {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 0.8rem;
+}
+
+.callout p {
+  color: var(--bone-dim);
+  font-size: 0.96rem;
+  line-height: 1.6;
+  margin-top: 0;
+}
+
+.callout p + p {
+  margin-top: 0.8rem;
+}
+
+.callout strong {
+  color: var(--bone);
+}
+
+/* ---------- glossary / range grid ---------- */
+.skillGroup {
+  margin-top: 2rem;
+}
+
+.skillGroup:first-of-type {
+  margin-top: 1.6rem;
+}
+
+.groupHead {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--brass);
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.1rem;
+}
+
+.groupHead::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--brass-dim);
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.skillGroup .skills {
+  margin-top: 0;
+}
+
+.skill {
+  background: var(--leather);
+  border: 1px solid var(--panel-edge);
+  padding: 1.1rem 1.2rem;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.skill:hover {
+  border-color: var(--blood);
+  transform: translateY(-3px);
+}
+
+.skill h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  color: var(--bone);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+
+.skillDot {
+  width: 5px;
+  height: 5px;
+  background: var(--blood);
+  border-radius: 50%;
+  flex: 0 0 auto;
+  transform: translateY(-3px);
+}
+
+.skill p {
+  color: var(--bone-dim);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* ---------- weapon tables ---------- */
+.tableHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 1.8rem;
+  margin-bottom: 0.7rem;
+}
+
+.chapter > .tableHead:first-of-type {
+  margin-top: 0;
+}
+
+.tableHead h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.12rem;
+  letter-spacing: 0.03em;
+  color: var(--bone);
+}
+
+.tableTag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--panel-edge);
+  background: var(--leather);
+  -webkit-overflow-scrolling: touch;
+}
+
+.wTable {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.wTable th {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  text-align: left;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px dashed var(--brass-dim);
+  white-space: nowrap;
+}
+
+.wTable td {
+  padding: 0.65rem 1rem;
+  color: var(--bone-dim);
+  border-bottom: 1px solid var(--panel-edge);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.wTable tr:last-child td {
+  border-bottom: none;
+}
+
+.wTable tr:hover td {
+  background: rgba(124, 22, 32, 0.07);
+}
+
+.wTable td:first-child {
+  color: var(--bone);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.wTable td:nth-child(2),
+.wTable td:nth-child(3) {
+  font-family: var(--font-mono);
+  color: var(--blood-bright);
+  white-space: nowrap;
+}
+
+.footnote {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--ash);
+  margin-top: 0.6rem;
+}
