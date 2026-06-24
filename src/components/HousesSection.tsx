@@ -5,7 +5,6 @@ import styles from "./Houses.module.css";
 import { getHouse } from "@/data/houses";
 
 const HUMAN_HOUSE_SLUGS = ["clement", "barone"];
-const UNNATURAL_LINEAGE_SLUGS = ["demdike", "chattox", "de-vere", "dragomir"];
 
 export default function HousesSection() {
   return (
@@ -25,33 +24,6 @@ export default function HousesSection() {
           if (!house) return null;
           return <FileCard key={house.slug} {...house} />;
         })}
-      </div>
-
-      <Reveal as="div" className={styles.groupLabel}>
-        Linhagens Não-Naturais
-      </Reveal>
-      <div className={styles.files}>
-        {UNNATURAL_LINEAGE_SLUGS.map((slug) => {
-          const house = getHouse(slug);
-          if (!house) return null;
-          return <FileCard key={house.slug} {...house} />;
-        })}
-        <FileCard
-          seal="█"
-          classification="Classificação"
-          hostileTag="Selado por ordem superior"
-          title={<span className={styles.redact}>████████</span>}
-          epithet="“As outras.”"
-          description={
-            <>
-              Há mais coisas sob o pacto do que bruxas e vampiros. <span className={styles.redact}>████ ███████</span>{" "}
-              permanece <span className={styles.redact}>█████████</span>, e os poucos que{" "}
-              <span className={styles.redact}>██████</span> não falam sobre isso.{" "}
-              <span className={styles.redact}>████████████████.</span>
-            </>
-          }
-          redacted
-        />
       </div>
     </section>
   );

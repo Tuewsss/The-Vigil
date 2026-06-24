@@ -115,16 +115,6 @@ export default async function AgentPage({ params }: { params: Promise<{ slug: st
             </div>
           </div>
           <p className={`${sectionStyles.lede} ${styles.lede}`}>{agent.summary}</p>
-        </section>
-
-        <section>
-          <div className={sectionStyles.eyebrow}>Histórico</div>
-          <h2 className={sectionStyles.heading}>Dossiê</h2>
-          {agent.bio.map((paragraph, index) => (
-            <p key={index} className={sectionStyles.body}>
-              {paragraph}
-            </p>
-          ))}
 
           {agent.attributes && (
             <div className={styles.attrGrid}>
@@ -136,6 +126,16 @@ export default async function AgentPage({ params }: { params: Promise<{ slug: st
               ))}
             </div>
           )}
+        </section>
+
+        <section>
+          <div className={sectionStyles.eyebrow}>Histórico</div>
+          <h2 className={sectionStyles.heading}>Dossiê</h2>
+          {agent.bio.map((paragraph, index) => (
+            <p key={index} className={sectionStyles.body}>
+              {paragraph}
+            </p>
+          ))}
 
           {skillEntries.length > 0 && (
             <div className={styles.skillsGrid}>

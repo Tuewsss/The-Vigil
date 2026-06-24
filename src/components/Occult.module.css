@@ -1,0 +1,482 @@
+/* ── PAGE WRAPPER ── */
+.pg {
+  padding: clamp(32px, 6vw, 64px) clamp(18px, 5vw, 32px);
+}
+
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.back {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  margin-bottom: 2.5rem;
+  transition: color 0.25s;
+}
+
+.back:hover,
+.back:focus-visible {
+  color: var(--blood-bright);
+}
+
+/* ── HERO ── */
+.hero {
+  text-align: center;
+  margin-bottom: clamp(44px, 8vw, 76px);
+}
+
+.heroEye {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 0.8rem;
+}
+
+.heroTitle {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 9vw, 4.5rem);
+  letter-spacing: 0.14em;
+  color: var(--bone);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.7);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.heroRule {
+  width: 200px;
+  height: 1px;
+  margin: 0 auto 1.3rem;
+  background: linear-gradient(90deg, transparent, var(--brass) 12%, var(--brass) 88%, transparent);
+}
+
+.heroLede {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.06rem;
+  color: var(--bone-dim);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* ── SHARED SHEET ── */
+.sheet {
+  position: relative;
+  padding: clamp(28px, 5vw, 52px) clamp(22px, 4vw, 48px) clamp(34px, 5vw, 52px);
+  margin-bottom: clamp(40px, 7vw, 64px);
+  background: var(--occ-bg);
+  border: 1px solid var(--occ-border);
+  box-shadow: var(--occ-shadow);
+}
+
+.sheet::before,
+.sheet::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+}
+
+.sheet::before {
+  background: var(--occ-stack-1);
+  border: 1px solid var(--occ-stack-1-border);
+  transform: rotate(-1.1deg) translate(-8px, 7px);
+}
+
+.sheet::after {
+  background: var(--occ-stack-2);
+  border: 1px solid var(--occ-stack-2-border);
+  transform: rotate(0.9deg) translate(8px, 10px);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+.cardLink {
+  display: block;
+  text-decoration: none;
+}
+
+.cardLink .sheet {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cardLink:hover .sheet,
+.cardLink:focus-visible .sheet {
+  transform: translateY(-4px);
+}
+
+.locked {
+  opacity: 0.7;
+}
+
+.lockedTag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--occ-note);
+  margin-top: 14px;
+  display: block;
+}
+
+.stamp {
+  position: absolute;
+  top: 18px;
+  right: clamp(14px, 4vw, 34px);
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  transform: rotate(8deg);
+  opacity: 0.78;
+  mix-blend-mode: multiply;
+  border-radius: 4px;
+  padding: 5px 12px;
+  border: 2px solid var(--occ-stamp);
+  color: var(--occ-stamp);
+}
+
+.slab {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 18px 7px;
+  margin-bottom: 12px;
+  border: 1px solid var(--occ-slab-border);
+  border-bottom: 3px solid var(--occ-slab-border-bottom);
+  background: var(--occ-slab-bg);
+  box-shadow: var(--occ-slab-shadow);
+}
+
+.slabNum {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  color: var(--occ-slab-num);
+}
+
+.slab h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.04rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--occ-slab-title);
+}
+
+.docHead {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 4.6vw, 2.3rem);
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  margin: 0 0 10px;
+  max-width: 88%;
+  color: var(--occ-head);
+  text-shadow: var(--occ-head-shadow);
+}
+
+.sep {
+  height: 1px;
+  border: 0;
+  margin: 14px 0;
+  background: var(--occ-sep);
+}
+
+.bodyP {
+  font-family: var(--font-body);
+  font-size: 1.04rem;
+  line-height: 1.65;
+  margin-bottom: 1.2rem;
+  color: var(--occ-body);
+}
+
+.bodyP:last-child {
+  margin-bottom: 0;
+}
+
+.note {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+  color: var(--occ-note);
+  margin-top: 0.8rem;
+}
+
+.quote {
+  color: var(--occ-accent);
+  font-weight: 600;
+}
+
+/* ── LEDGER (key/value overview rows) ── */
+.ledger {
+  margin: 8px 0 4px;
+  border-top: 1px solid var(--occ-ledger-line);
+}
+
+.lrow {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 12px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--occ-lrow-line);
+}
+
+.lrowK {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  color: var(--occ-key);
+}
+
+.lrowV {
+  font-family: var(--font-body);
+  font-size: 0.99rem;
+  line-height: 1.5;
+  color: var(--occ-val);
+}
+
+.asideNote {
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  letter-spacing: 0.04em;
+  font-style: italic;
+  margin-top: 16px;
+  color: var(--occ-note);
+}
+
+/* ── GROUP LABEL (sub-heading inside a sheet) ── */
+.groupLabel {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--occ-slab-num);
+  margin: 1.6rem 0 0.7rem;
+}
+
+.groupLabel:first-of-type {
+  margin-top: 0;
+}
+
+.groupNote {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--occ-note);
+  margin: -0.4rem 0 0.7rem;
+}
+
+/* ── TABLE ── */
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--occ-table-border);
+  margin-bottom: 1rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.otable {
+  width: 100%;
+  min-width: 460px;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.otable th {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--occ-key);
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--occ-table-border);
+  white-space: nowrap;
+}
+
+.otable td {
+  padding: 0.6rem 0.9rem;
+  color: var(--occ-val);
+  border-bottom: 1px solid var(--occ-lrow-line);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.otable tr:last-child td {
+  border-bottom: none;
+}
+
+.otable td:first-child {
+  color: var(--occ-key);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════
+   THEME: SANGUE
+══════════════════════════════════════════ */
+.sangue {
+  --occ-bg: linear-gradient(165deg, #3a0e0e 0%, #2c0a0a 55%, #200606 100%);
+  --occ-border: rgba(190, 60, 60, 0.45);
+  --occ-shadow: 0 2px 0 rgba(0, 0, 0, 0.6), 0 18px 50px rgba(120, 0, 0, 0.35);
+  --occ-stack-1: #260808;
+  --occ-stack-1-border: rgba(150, 40, 40, 0.35);
+  --occ-stack-2: #1a0505;
+  --occ-stack-2-border: rgba(120, 30, 30, 0.3);
+  --occ-stamp: rgba(230, 90, 80, 0.75);
+  --occ-slab-bg: rgba(110, 15, 15, 0.5);
+  --occ-slab-border: rgba(190, 60, 60, 0.42);
+  --occ-slab-border-bottom: rgba(150, 30, 30, 0.7);
+  --occ-slab-shadow: 0 3px 10px rgba(80, 0, 0, 0.4);
+  --occ-slab-num: rgba(255, 195, 190, 0.78);
+  --occ-slab-title: #ffdcd0;
+  --occ-head: #f8e4dc;
+  --occ-head-shadow: 0 0 40px rgba(190, 30, 30, 0.32);
+  --occ-sep: linear-gradient(90deg, transparent, rgba(210, 75, 75, 0.5) 20%, rgba(210, 75, 75, 0.5) 80%, transparent);
+  --occ-body: rgba(235, 205, 198, 0.85);
+  --occ-ledger-line: rgba(210, 75, 75, 0.32);
+  --occ-lrow-line: rgba(210, 75, 75, 0.18);
+  --occ-key: rgba(255, 212, 205, 0.85);
+  --occ-val: rgba(230, 196, 188, 0.76);
+  --occ-note: rgba(220, 145, 135, 0.55);
+  --occ-accent: rgba(235, 90, 80, 0.9);
+  --occ-table-border: rgba(210, 75, 75, 0.28);
+}
+
+.drip {
+  position: absolute;
+  top: 0;
+  right: 72px;
+  width: 3px;
+  height: 48px;
+  background: linear-gradient(180deg, rgba(220, 70, 60, 0.5) 0%, rgba(200, 50, 50, 0.14) 80%, transparent 100%);
+  border-radius: 0 0 3px 3px;
+}
+
+.drip::after {
+  content: "";
+  position: absolute;
+  bottom: -9px;
+  left: -3px;
+  width: 9px;
+  height: 9px;
+  background: rgba(220, 70, 60, 0.32);
+  border-radius: 50% 50% 60% 40%;
+}
+
+.stain {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 170px;
+  height: 170px;
+  opacity: 0.14;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* ══════════════════════════════════════════
+   THEME: FEITIÇARIA
+══════════════════════════════════════════ */
+.feiticaria {
+  --occ-bg: linear-gradient(165deg, #2a0a38 0%, #1e0828 55%, #150520 100%);
+  --occ-border: rgba(90, 30, 140, 0.52);
+  --occ-shadow: 0 2px 0 rgba(0, 0, 0, 0.6), 0 18px 50px rgba(60, 0, 100, 0.28), 0 0 100px rgba(80, 0, 120, 0.07);
+  --occ-stack-1: #200630;
+  --occ-stack-1-border: rgba(70, 15, 110, 0.42);
+  --occ-stack-2: #160420;
+  --occ-stack-2-border: rgba(50, 10, 80, 0.38);
+  --occ-stamp: rgba(150, 70, 200, 0.62);
+  --occ-slab-bg: rgba(55, 8, 85, 0.75);
+  --occ-slab-border: rgba(90, 30, 140, 0.42);
+  --occ-slab-border-bottom: rgba(50, 5, 90, 0.72);
+  --occ-slab-shadow: 0 3px 10px rgba(50, 0, 100, 0.32);
+  --occ-slab-num: rgba(190, 140, 235, 0.6);
+  --occ-slab-title: rgba(225, 195, 252, 0.92);
+  --occ-head: rgba(235, 215, 255, 0.92);
+  --occ-head-shadow: 0 0 40px rgba(130, 40, 200, 0.32);
+  --occ-sep: linear-gradient(90deg, transparent, rgba(125, 50, 195, 0.55) 20%, rgba(125, 50, 195, 0.55) 80%, transparent);
+  --occ-body: rgba(212, 188, 235, 0.85);
+  --occ-ledger-line: rgba(90, 35, 140, 0.32);
+  --occ-lrow-line: rgba(90, 35, 140, 0.18);
+  --occ-key: rgba(212, 180, 242, 0.85);
+  --occ-val: rgba(192, 165, 222, 0.78);
+  --occ-note: rgba(155, 100, 205, 0.58);
+  --occ-accent: rgba(170, 95, 220, 0.85);
+  --occ-table-border: rgba(90, 35, 140, 0.3);
+}
+
+.sigil {
+  position: absolute;
+  bottom: -24px;
+  right: -24px;
+  width: 230px;
+  height: 230px;
+  opacity: 0.1;
+  pointer-events: none;
+  color: rgba(140, 55, 210, 1);
+}
+
+/* ══════════════════════════════════════════
+   THEME: OCULTISMO
+══════════════════════════════════════════ */
+.ocultismo {
+  --occ-bg: linear-gradient(165deg, #16161f 0%, #101019 55%, #0a0a10 100%);
+  --occ-border: rgba(90, 90, 140, 0.45);
+  --occ-shadow: 0 2px 0 rgba(0, 0, 0, 0.85), 0 20px 60px rgba(0, 0, 0, 0.65);
+  --occ-stack-1: #0e0e16;
+  --occ-stack-1-border: rgba(65, 65, 105, 0.38);
+  --occ-stack-2: #0a0a10;
+  --occ-stack-2-border: rgba(50, 50, 85, 0.32);
+  --occ-stamp: rgba(165, 165, 215, 0.65);
+  --occ-slab-bg: rgba(22, 22, 40, 0.85);
+  --occ-slab-border: rgba(90, 90, 140, 0.4);
+  --occ-slab-border-bottom: rgba(65, 65, 110, 0.7);
+  --occ-slab-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  --occ-slab-num: rgba(165, 165, 220, 0.72);
+  --occ-slab-title: rgba(205, 203, 238, 0.88);
+  --occ-head: rgba(222, 220, 248, 0.92);
+  --occ-head-shadow: none;
+  --occ-sep: linear-gradient(90deg, transparent, rgba(110, 110, 170, 0.45) 20%, rgba(110, 110, 170, 0.45) 80%, transparent);
+  --occ-body: rgba(198, 196, 228, 0.84);
+  --occ-ledger-line: rgba(90, 90, 140, 0.32);
+  --occ-lrow-line: rgba(90, 90, 140, 0.2);
+  --occ-key: rgba(200, 198, 235, 0.85);
+  --occ-val: rgba(175, 173, 212, 0.75);
+  --occ-note: rgba(150, 148, 195, 0.6);
+  --occ-accent: rgba(165, 163, 215, 0.88);
+  --occ-table-border: rgba(90, 90, 140, 0.32);
+}
+
+.fog {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 40% at 20% 80%, rgba(15, 15, 35, 0.65) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(20, 15, 40, 0.48) 0%, transparent 52%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 560px) {
+  .lrow {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .lrowK {
+    font-size: 0.82rem;
+  }
+}

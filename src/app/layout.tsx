@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cinzel, EB_Garamond, Special_Elite } from "next/font/google";
+import BloodIntro from "@/components/BloodIntro";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -38,7 +39,10 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${cinzel.variable} ${ebGaramond.variable} ${specialElite.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <BloodIntro />
+        {children}
+      </body>
     </html>
   );
 }

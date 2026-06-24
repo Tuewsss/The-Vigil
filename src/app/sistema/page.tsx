@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import SystemTree from "@/components/SystemTree";
+import DrawerCabinet from "@/components/DrawerCabinet";
 import sectionStyles from "@/components/Section.module.css";
 import styles from "./page.module.css";
 
@@ -32,13 +32,13 @@ export default function SystemPage() {
           </p>
           <p className={`${sectionStyles.body} ${styles.intro}`}>
             O sistema foi desenhado para uma única coisa: o medo. As regras são poucas, e isso é proposital. Cada
-            teste é uma pequena aposta contra o escuro — e o escuro raramente joga limpo. Escolha um ramo da árvore
-            abaixo para abrir o capítulo correspondente.
+            teste é uma pequena aposta contra o escuro — e o escuro raramente joga limpo. Selecione uma gaveta abaixo
+            para abrir o dossiê correspondente.
           </p>
         </section>
 
         <section>
-          <SystemTree />
+          <DrawerCabinet />
         </section>
       </article>
       <Footer />

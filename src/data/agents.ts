@@ -55,6 +55,7 @@ export const AGENTS: Agent[] = [
       "Venha, Madame Dabi irá te recepcionar como ninguém. Sente-se, seja servido pelas famosas \"Flappers\" da casa, relaxe os ombros e aproveite o espetáculo. E se quiser, pode até levantar para movimentar o esqueleto com uma inupta donzela presente.",
       "O ambiente era agradável, a não ser pelo cheiro de cigarro. Mas isso dá pra ser relevado ao observar os detalhes minuciosos dos lustres, o caimento impecável das cortinas, o Jazz que ecoava em seu auge e o som da vida acontecendo ali.",
     ],
+    attributes: { corpo: 1, menteEspirito: 1, socialSegredo: 1, sobrenatural: 1 },
     missions: [],
   },
   {
@@ -85,68 +86,8 @@ export const AGENTS: Agent[] = [
       "Cada baile aumentava seu sentimento contraditório. Por um lado, sentia-se fascinada pela emoção do segredo; por outro, carregava uma culpa crescente ao olhar para William, que continuava confiando nela sem reservas.",
       "A situação tornava-se ainda mais dolorosa porque, nos bastidores do Cabaret da Madame Dabi, William frequentemente demonstrava orgulho da esposa. Quando ela era convidada para uma apresentação especial, ele costumava observá-la dos bastidores com admiração genuína, convencido de que havia encontrado a mulher perfeita. Carmita sorria para ele, aceitava flores após os espetáculos e agradecia seus elogios, enquanto escondia a verdade que poderia destruir tudo.",
     ],
+    attributes: { corpo: 1, menteEspirito: 1, socialSegredo: 1, sobrenatural: 1 },
     missions: [],
-  },
-  {
-    slug: "tobias-marsh",
-    seal: "T",
-    codename: "Agente Marsh",
-    name: "Tobias Marsh",
-    age: "41",
-    gender: "Masculino",
-    status: "Ativo",
-    house: "Casa Clement",
-    role: "Batedor & combatente",
-    classification: "Pasta Pessoal · Divisão de Campo",
-    summary:
-      "Ex-soldado, mão pesada, paciência curta. Se a porta precisa ser arrombada antes que algo do outro lado a arrombe primeiro, Marsh já está com o ombro nela.",
-    bio: [
-      "Marsh serviu doze anos antes de a Vigília o recrutar de um hospital de veteranos — o único sobrevivente de uma patrulha que \"não devia ter visto o que viu\". Não fala sobre aquela noite. Fala, com gosto, sobre as que vieram depois.",
-      "É o nome que a ordem chama quando a missão é simples: entrar, encontrar, sair com vida. As complicações ele resolve no caminho.",
-    ],
-    attributes: { corpo: 3, menteEspirito: 1, socialSegredo: 0, sobrenatural: 0 },
-    skills: { Combate: 3, Vigor: 2, Furtividade: 2 },
-    missions: [
-      {
-        title: "Limpeza do Celeiro de Aldgate",
-        status: "Concluída",
-        summary:
-          "Um ninho de ghouls instalado sob um celeiro abandonado. Marsh entrou sozinho, ao amanhecer, e saiu sozinho. O celeiro não saiu.",
-      },
-      {
-        title: "Escolta da Carga de Tannhall",
-        status: "Arquivada",
-        summary:
-          "Proteção de um transporte de relíquias entre quartéis. Sem incidentes — o que, segundo Marsh, foi o incidente mais estranho do ano.",
-      },
-    ],
-  },
-  {
-    slug: "agente-07",
-    seal: "█",
-    codename: "Agente 07",
-    name: "████████",
-    age: "Desconhecida",
-    gender: "Não consta",
-    status: "Classificado",
-    role: "Natureza não revelada",
-    classification: "Pasta Pessoal · Acesso restrito",
-    summary:
-      "Recrutado fora do procedimento padrão. O processo de admissão foi assinado, depois selado, depois negado. Continua na ativa.",
-    bio: [
-      "Tudo o que existe sobre o Agente 07 são lacunas redigidas a propósito: ████ ███████ permanece █████████, e os poucos que ██████ não falam sobre isso.",
-      "████████████████. O dossiê completo está sob o mesmo selo da relíquia.",
-    ],
-    attributes: { corpo: 1, menteEspirito: 1, socialSegredo: 1, sobrenatural: 2 },
-    skills: { "████████": 0, "███████████": 0 },
-    missions: [
-      {
-        title: "████████████",
-        status: "Classificada",
-        summary: "Registro removido por ordem superior. ████████████████████████████████.",
-      },
-    ],
-    redacted: true,
   },
 ];
 

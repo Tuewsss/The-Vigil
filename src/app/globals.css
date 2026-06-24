@@ -11,6 +11,13 @@
   --brass: #9c7c4e; /* tarnished brass */
   --brass-dim: #5c4a30;
 
+  /* aged paper, used for the "document" surface inside system chapters */
+  --paper: #d9cbac;
+  --paper-2: #cfbf9c;
+  --paper-edge: #b6a37b;
+  --ink: #2a2017;
+  --ink-faded: #6c5d44;
+
   --font-heading: var(--font-cinzel), serif;
   --font-body: var(--font-garamond), Georgia, serif;
   --font-mono: var(--font-special), monospace;

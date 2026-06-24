@@ -244,52 +244,6 @@ export const HOUSES: House[] = [
     history: [],
     genealogy: [],
   },
-  {
-    slug: "demdike",
-    seal: "✠",
-    classification: "Bruxaria · Pendle, 1612",
-    hostileTag: "Status: Hostil",
-    title: "Demdike",
-    epithet: "A memória mais longa",
-    description:
-      "Descendentes das bruxas de Pendle que escaparam da forca e mergulharam na clandestinidade. Caçadas por três séculos — e os Clement continuaram o serviço. Se alguém vai trazer o caos como vingança, começa por elas.",
-    history: [],
-    genealogy: [],
-  },
-  {
-    slug: "chattox",
-    seal: "✠",
-    classification: "Bruxaria · Rival das Demdike",
-    title: "Chattox",
-    epithet: "Trezentos anos de ódio",
-    description:
-      "A linha de bruxas inimiga das Demdike desde Pendle. A guerra e a gripe, porém, podem forçar as duas a uma aliança aterradora — contra o inimigo comum: a Vigília.",
-    history: [],
-    genealogy: [],
-  },
-  {
-    slug: "de-vere",
-    seal: "†",
-    classification: "Vampírica · Anterior à ordem",
-    title: "de Vere",
-    epithet: "Os mais civilizados, os mais perigosos",
-    description:
-      "Uma linhagem antiquíssima, mais velha que a própria ordem, entranhada na aristocracia inglesa. Assinaram o pacto, mas nunca perdoaram os Clement. Sorriem nos salões enquanto medem o seu pescoço.",
-    history: [],
-    genealogy: [],
-  },
-  {
-    slug: "dragomir",
-    seal: "†",
-    classification: "Vampírica · Continental",
-    hostileTag: "Status: Hostil",
-    title: "Dragomir",
-    epithet: "Chega de trégua",
-    description:
-      "Vampiros vindos do leste, duros e sem paciência para diplomacia. São a voz que sussurra pelo fim do pacto, agora que a guerra mostrou ao mundo como o lado natural está fraco.",
-    history: [],
-    genealogy: [],
-  },
 ];
 
 export function getHouse(slug: string): House | undefined {

@@ -1,17 +1,16 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import Reveal from "@/components/Reveal";
-import sectionStyles from "@/components/Section.module.css";
-import styles from "./page.module.css";
+import Dossier from "@/components/Dossier";
+import DragScroll from "@/components/DragScroll";
+import doc from "@/components/Document.module.css";
 
 export const metadata: Metadata = {
   title: "Sistema de Armas — O Sistema — The Sacred Blood: The Vigil",
   description: "Calibre, lâmina e traço: o catálogo de armas de fogo, brancas e improvisadas da Vigília.",
 };
 
-interface Trait {
+interface Entry {
   name: string;
   description: string;
 }
@@ -29,43 +28,52 @@ interface MeleeWeapon {
   traits: string;
 }
 
-const RANGES: Trait[] = [
+const RANGES: Entry[] = [
   { name: "Corpo a corpo", description: "Armas brancas e improvisadas." },
   { name: "Curto", description: "Espingardas, pistolas de bolso." },
   { name: "Médio", description: "Revólveres, pistolas, submetralhadoras." },
   { name: "Longo", description: "Rifles." },
 ];
 
-const ADVANTAGES: Trait[] = [
+const ADVANTAGES: Entry[] = [
   { name: "Confiável", description: "Só emperra no 1 natural." },
   { name: "Preciso", description: "Gastar uma ação para mirar dá +1 dado no pool." },
   { name: "Recarga Rápida", description: "Recarrega como ação rápida (clipe, pente, top-break)." },
   {
     name: "Rajada",
-    description: "Dispara em automático: escolha atingir até 3 alvos próximos OU +Dano em um só. Esvazia o carregador depressa.",
+    description: "Dispara em automático: escolha atingir até 3 alvos próximos ou +metade do Dano em um só. Esvazia o carregador depressa.",
   },
   { name: "Dispersão", description: "Vantagem para acertar a curta distância; o Dano cai a Médio e some a Longo." },
   { name: "Sangramento", description: "Em Ótimo+, o alvo perde Vida a cada turno até estancar (ação de Medicina ou improviso)." },
   { name: "Perfurante", description: "Ignora parte da proteção/armadura." },
-  { name: "Aparar", description: "Pode ser usada para defender (reação), somando Combate à Defesa." },
+  {
+    name: "Aparar",
+    description: "Permite a reação de Aparar (defesa com Combate, corpo a corpo). Numa aparada perfeita, quebra a guarda do inimigo e abre um contra-golpe. Ver Combate.",
+  },
   { name: "Ocultável", description: "Fácil de esconder; Vantagem para portar disfarçado e bônus de surpresa." },
   { name: "Silenciável", description: "Aceita supressor ou é naturalmente silenciosa: não atrai atenção." },
   { name: "Brutal", description: "No Crítico, decepa/estraçalha: efeito máximo + complicação narrativa pro alvo." },
   { name: "Arremessável", description: "Pode ser lançada sem penalidade." },
-  { name: "Alcance (extensão)", description: "Atinge a uma casa de distância; ataca primeiro contra quem se aproxima." },
+  { name: "Alcance", description: "Atinge a uma casa de distância; ataca primeiro contra quem se aproxima." },
+  { name: "Alcance Estendido", description: "(Armas de fogo) pode atacar a uma faixa de alcance além da sua categoria, com Desvantagem." },
   { name: "Contundente", description: "Em Ótimo+, atordoa em vez de sangrar; pode ser usada não-letal." },
   { name: "Versátil", description: "Também serve como ferramenta (abrir, prender, alavancar)." },
   { name: "Robusta", description: "Não quebra; resiste a maus-tratos." },
+  { name: "Leve", description: "Pequena e ágil; fácil de manejar, favorece ataques rápidos e furtivos." },
+  { name: "Comum", description: "Barata e fácil de encontrar ou substituir; não levanta suspeita." },
+  { name: "Símbolo", description: "Carrega peso cultural ou de autoridade; pode impor respeito ou medo (vantagem situacional em Intimidação ou Lábia)." },
+  { name: "Discreta", description: "Parece inofensiva; não desperta suspeita até ser usada (vantagem na surpresa)." },
+  { name: "Enredar", description: "Em vez de ferir, pode prender ou desarmar o alvo." },
 ];
 
-const DISADVANTAGES: Trait[] = [
+const DISADVANTAGES: Entry[] = [
   { name: "Emperra", description: "No Fracasso, trava; gaste uma ação para desemperrar." },
   { name: "Recarga Lenta", description: "Recarregar consome o turno inteiro." },
   { name: "Recarga Muito Lenta", description: "Cartucho por cartucho; vários turnos." },
+  { name: "Recarga Frequente", description: "Carregador muito pequeno: a recarga é rápida, mas acontece o tempo todo." },
   {
     name: "Ruidosa",
-    description:
-      "O disparo ecoa: role na tabela de atrair atenção (reforços, criatura, testemunha). Decisivo em cenas de furtividade.",
+    description: "O disparo ecoa e atrai atenção: o narrador decide as consequências (reforços, criatura, testemunha). Decisivo em cenas de furtividade.",
   },
   { name: "Duas Mãos", description: "Ocupa as duas mãos." },
   { name: "Pesada", description: "Desvantagem em Iniciativa ou ao trocar de arma rápido." },
@@ -80,23 +88,13 @@ const REVOLVERS: Firearm[] = [
   { name: "Webley Mk VI (.455)", damage: "7", capacity: "6", traits: "Confiável, Recarga Rápida (top-break), Ruidosa" },
   { name: "Colt New Service (.45)", damage: "7", capacity: "6", traits: "Confiável, Ruidosa" },
   { name: "S&W Hand Ejector", damage: "6", capacity: "6", traits: "Preciso, Confiável, Ruidosa" },
-  {
-    name: "Nagant M1895",
-    damage: "5",
-    capacity: "7",
-    traits: "Silenciável (selo de gás), Mecanismo Duro, Recarga Muito Lenta, Ruidosa*",
-  },
+  { name: "Nagant M1895", damage: "5", capacity: "7", traits: "Silenciável (selo de gás), Mecanismo Duro, Recarga Muito Lenta, Ruidosa" },
 ];
 
 const PISTOLS: Firearm[] = [
   { name: "Colt M1911 (.45 ACP)", damage: "7", capacity: "7", traits: "Confiável, Recarga Rápida, Ruidosa" },
   { name: "Luger P08 (9mm)", damage: "6", capacity: "8", traits: "Preciso, Recarga Rápida, Emperra (sensível a sujeira), Ruidosa" },
-  {
-    name: "Mauser C96 (7.63)",
-    damage: "6",
-    capacity: "10",
-    traits: "Alcance estendido (atira a Longo com Desvantagem leve), Volumosa, Recarga Lenta, Ruidosa",
-  },
+  { name: "Mauser C96 (7.63)", damage: "6", capacity: "10", traits: "Alcance Estendido, Volumosa, Recarga Lenta, Ruidosa" },
   { name: "FN Model 1910 (.380)", damage: "4", capacity: "7", traits: "Ocultável, Curto, Ruidosa" },
   { name: "Browning M1900 (.32)", damage: "4", capacity: "7", traits: "Ocultável, Curto, Ruidosa" },
 ];
@@ -134,44 +132,41 @@ const KNIVES: MeleeWeapon[] = [
   { name: "Faca Bowie", damage: "5", traits: "Sangramento, Versátil" },
   { name: "Faca de caça", damage: "4", traits: "Sangramento, Versátil, Comum" },
   { name: "Stiletto italiano", damage: "4", traits: "Perfurante, Ocultável, Sangramento, Frágil" },
-  { name: "Dirk escocesa", damage: "5", traits: "Sangramento, Símbolo cultural" },
+  { name: "Dirk escocesa", damage: "5", traits: "Sangramento, Símbolo" },
   { name: "Canivete de bolso", damage: "3", traits: "Ocultável, Leve, Versátil" },
 ];
 
 const SWORDS: MeleeWeapon[] = [
-  { name: "Sabre de cavalaria", damage: "6", traits: "Aparar, corte largo" },
+  { name: "Sabre de cavalaria", damage: "6", traits: "Aparar (corte largo)" },
   { name: "Espada de oficial", damage: "6", traits: "Aparar, Símbolo (impõe respeito/medo)" },
   { name: "Florete / Espada / Sabre de esgrima", damage: "5", traits: "Preciso, Aparar, Perfurante (estocada), Frágil (lâmina esportiva)" },
   { name: "Espada naval (cutelo)", damage: "6", traits: "Aparar, Robusta" },
 ];
 
 const IMPROVISED: MeleeWeapon[] = [
-  { name: "Bengala reforçada", damage: "4", traits: "Discreta (parece inofensiva), Aparar, Contundente" },
+  { name: "Bengala reforçada", damage: "4", traits: "Discreta, Aparar, Contundente" },
   { name: "Bengala-espada", damage: "5", traits: "Lâmina oculta (surpresa), Ilegal, Sangramento, Frágil" },
   { name: "Navalha", damage: "3", traits: "Sangramento, Ocultável, Leve" },
   { name: "Cassetete / Bastão policial", damage: "4", traits: "Contundente, opção não-letal" },
-  { name: "Corrente", damage: "4", traits: "Alcance (extensão), Enredar (pode desarmar/prender)" },
+  { name: "Corrente", damage: "4", traits: "Alcance, Enredar" },
   { name: "Martelo", damage: "5", traits: "Contundente, Comum" },
   { name: "Machadinha de caça", damage: "6", traits: "Sangramento, Perfurante, Arremessável" },
 ];
 
 const HISTORICAL: MeleeWeapon[] = [
-  { name: "Espada medieval herdada", damage: "7", traits: "Aparar, Pesada, Símbolo, (opcional: Duas Mãos para +Dano)" },
+  { name: "Espada medieval herdada", damage: "7", traits: "Aparar, Pesada, Símbolo (opcional: Duas Mãos para +Dano)" },
   { name: "Machado de guerra antigo", damage: "7", traits: "Perfurante, Brutal, Pesada" },
   { name: "Alabarda decorativa", damage: "7", traits: "Alcance (golpeia primeiro), Duas Mãos, Pesada, Desajeitada" },
   { name: "Baioneta", damage: "4", traits: "Versátil — solta funciona como faca; acoplada ao rifle, vira lança (ganha Alcance)" },
 ];
 
-function TraitGrid({ traits }: { traits: Trait[] }) {
+function EntryGlossary({ entries }: { entries: Entry[] }) {
   return (
-    <div className={styles.skills}>
-      {traits.map((trait) => (
-        <div key={trait.name} className={styles.skill}>
-          <h4>
-            <span className={styles.skillDot} />
-            {trait.name}
-          </h4>
-          <p>{trait.description}</p>
+    <div className={doc.glossary}>
+      {entries.map((entry) => (
+        <div key={entry.name} className={doc.termCard}>
+          <h5>{entry.name}</h5>
+          <p>{entry.description}</p>
         </div>
       ))}
     </div>
@@ -180,8 +175,8 @@ function TraitGrid({ traits }: { traits: Trait[] }) {
 
 function FirearmTable({ weapons }: { weapons: Firearm[] }) {
   return (
-    <div className={styles.tableWrap}>
-      <table className={styles.wTable}>
+    <DragScroll className={doc.tableWrap}>
+      <table className={doc.wTable}>
         <thead>
           <tr>
             <th>Arma</th>
@@ -201,14 +196,14 @@ function FirearmTable({ weapons }: { weapons: Firearm[] }) {
           ))}
         </tbody>
       </table>
-    </div>
+    </DragScroll>
   );
 }
 
 function MeleeTable({ weapons }: { weapons: MeleeWeapon[] }) {
   return (
-    <div className={styles.tableWrap}>
-      <table className={styles.wTable}>
+    <DragScroll className={doc.tableWrap}>
+      <table className={doc.wTable}>
         <thead>
           <tr>
             <th>Arma</th>
@@ -226,7 +221,7 @@ function MeleeTable({ weapons }: { weapons: MeleeWeapon[] }) {
           ))}
         </tbody>
       </table>
-    </div>
+    </DragScroll>
   );
 }
 
@@ -236,177 +231,170 @@ export default function ArmasPage() {
       <Nav />
       <article>
         <section>
-          <Link href="/sistema" className={styles.back}>
-            ← Voltar ao Sistema
-          </Link>
-          <header className={styles.header}>
-            <span className={styles.seal}>IV</span>
-            <div className={styles.classification}>Documento Técnico · Sistema de Jogo</div>
-            <h1 className={styles.title}>Sistema de Armas</h1>
-            <p className={styles.epithet}>Calibre, Lâmina &amp; Traço</p>
-          </header>
-          <p className={`${sectionStyles.lede} ${styles.lede}`}>
-            Era ~1910–1930. Todas as armas usam a Tabela de Resultados já existente. Armas de fogo testam{" "}
-            <strong>Pontaria</strong> (Corpo); armas brancas e improvisadas testam <strong>Combate</strong> (Corpo). O{" "}
-            <strong>Dano</strong> listado é um valor base — a qualidade do acerto define quanto disso o alvo leva.
-          </p>
-        </section>
+          <Dossier
+            gnum="Gaveta IV"
+            plateTitle="O Sistema"
+            plateSub="Manual Operacional · Sistema de Armas"
+            eyebrow="Ref. SIS-IV — Custódia da Ordem — Não reproduzir"
+            heading="Sistema de Armas"
+            signoff="Arquivado pela custódia da Ordem — Gaveta IV, circulação restrita."
+            lede={
+              <>
+                Você rola o ataque normalmente (pool de d20, fica com o maior, soma a perícia e os modificadores). O{" "}
+                <strong>Dano</strong> listado é um valor base — a qualidade do acerto define quanto disso o alvo
+                leva.
+              </>
+            }
+          >
+            <section className={doc.panel} id="dano">
+              <div className={doc.tab}>
+                <span className={doc.tabNum}>I.</span>
+                <h3>Regra Universal de Dano</h3>
+              </div>
+              <p className={doc.body}>Leia o resultado na tabela e aplique o dano:</p>
+              <div className={doc.ledger} role="table" aria-label="Efeito do Dano por Resultado">
+                <div className={`${doc.row} ${doc.rowBad}`}>
+                  <span className={doc.band}>Fracasso</span>
+                  <span className={doc.range}>Erra</span>
+                  <span className={doc.what}>
+                    A arma pode emperrar/quebrar (se tiver o traço) ou criar uma complicação: acertar aliado, ficar
+                    exposto, derrubar a arma.
+                  </span>
+                </div>
+                <div className={doc.row}>
+                  <span className={doc.band}>Ruim</span>
+                  <span className={doc.range}>Raspão</span>
+                  <span className={doc.what}>Acerto de raspão → metade do Dano (arredonda pra baixo).</span>
+                </div>
+                <div className={doc.row}>
+                  <span className={doc.band}>Bom</span>
+                  <span className={doc.range}>Dano base</span>
+                  <span className={doc.what}>Dano base, cheio.</span>
+                </div>
+                <div className={doc.row}>
+                  <span className={doc.band}>Ótimo</span>
+                  <span className={doc.range}>Dano + traço</span>
+                  <span className={doc.what}>Dano base e ativa o traço (Sangramento, Atordoar, etc.).</span>
+                </div>
+                <div className={`${doc.row} ${doc.rowCrit}`}>
+                  <span className={doc.band}>Crítico</span>
+                  <span className={doc.range}>Dano dobrado</span>
+                  <span className={doc.what}>Dano dobrado, ignora proteção, e ativa o efeito máximo do traço.</span>
+                </div>
+              </div>
+            </section>
 
-        <section>
-          <Reveal as="div" className={styles.chapter}>
-            <h2 className={styles.chapterTitle}>1. Regra Universal de Dano</h2>
-            <p className={sectionStyles.body} style={{ marginTop: 0 }}>
-              Você rola o ataque normalmente (pool de d20, fica com o maior, soma a perícia). Leia o resultado na
-              Tabela e aplique o Dano assim:
-            </p>
+            <hr className={doc.rule} />
 
-            <div className={styles.results}>
-              <div className={styles.resultsHead}>Efeito do Dano por Resultado</div>
-              <div className={`${styles.resRow} ${styles.fail}`}>
-                <span className={styles.resRange}>Fracasso</span>
-                <span className={styles.resLabel}>Erra</span>
-                <span className={styles.resMean}>
-                  A arma pode emperrar/quebrar (se tiver o traço) ou criar uma complicação: acertar aliado, ficar
-                  exposto, derrubar a arma.
-                </span>
+            <section className={doc.panel} id="alcance">
+              <div className={doc.tab}>
+                <span className={doc.tabNum}>II.</span>
+                <h3>Alcance</h3>
               </div>
-              <div className={styles.resRow}>
-                <span className={styles.resRange}>Ruim</span>
-                <span className={styles.resLabel}>Raspão</span>
-                <span className={styles.resMean}>Acerto de raspão → metade do Dano (arredonda pra baixo).</span>
-              </div>
-              <div className={styles.resRow}>
-                <span className={styles.resRange}>Bom</span>
-                <span className={styles.resLabel}>Dano base</span>
-                <span className={styles.resMean}>Dano base, cheio.</span>
-              </div>
-              <div className={styles.resRow}>
-                <span className={styles.resRange}>Ótimo</span>
-                <span className={styles.resLabel}>Dano + traço</span>
-                <span className={styles.resMean}>Dano base e ativa o traço (Sangramento, Atordoar, etc.).</span>
-              </div>
-              <div className={`${styles.resRow} ${styles.crit}`}>
-                <span className={styles.resRange}>Crítico</span>
-                <span className={styles.resLabel}>Dano dobrado</span>
-                <span className={styles.resMean}>
-                  Dano dobrado, ignora proteção, e ativa o efeito máximo do traço.
-                </span>
-              </div>
-            </div>
+              <EntryGlossary entries={RANGES} />
+            </section>
 
-            <div className={styles.callout}>
-              <div className={styles.calloutTitle}>Ataque Furtivo</div>
-              <p>
-                Alvo desprevenido, via Furtividade: sobe <strong>um nível</strong> na tabela acima. Uma faca contra um
-                pescoço desprevenido é mortal — é por isso que feiticeiros temem becos escuros tanto quanto monstros.
+            <hr className={doc.rule} />
+
+            <section className={doc.panel} id="tracos">
+              <div className={doc.tab}>
+                <span className={doc.tabNum}>III.</span>
+                <h3>Glossário de Traços</h3>
+              </div>
+              <p className={doc.cap}>Vantagens</p>
+              <EntryGlossary entries={ADVANTAGES} />
+              <p className={doc.cap} style={{ marginTop: "1rem" }}>
+                Desvantagens
               </p>
-            </div>
-          </Reveal>
+              <EntryGlossary entries={DISADVANTAGES} />
+            </section>
 
-          <Reveal as="div" className={styles.chapter}>
-            <h2 className={styles.chapterTitle}>2. Alcance</h2>
-            <p className={sectionStyles.body} style={{ marginTop: 0 }}>
-              Cada arma tem uma faixa ideal. Atacar fora da faixa impõe Desvantagem (e, no caso de armas de fogo, o
-              Dano pode cair).
-            </p>
-            <TraitGrid traits={RANGES} />
-          </Reveal>
+            <hr className={doc.rule} />
 
-          <Reveal as="div" className={styles.chapter}>
-            <h2 className={styles.chapterTitle}>3. Glossário de Traços</h2>
+            <section className={doc.panel} id="fogo">
+              <div className={doc.tab}>
+                <span className={doc.tabNum}>IV.</span>
+                <h3>Armas de Fogo</h3>
+              </div>
 
-            <div className={styles.skillGroup}>
-              <div className={styles.groupHead}>Vantagens</div>
-              <TraitGrid traits={ADVANTAGES} />
-            </div>
+              <div className={doc.tableHead}>
+                <h4>Revólveres</h4>
+                <span className={doc.tableTag}>Médio · Pontaria</span>
+              </div>
+              <FirearmTable weapons={REVOLVERS} />
 
-            <div className={styles.skillGroup}>
-              <div className={styles.groupHead}>Desvantagens</div>
-              <TraitGrid traits={DISADVANTAGES} />
-            </div>
-          </Reveal>
-
-          <Reveal as="div" className={styles.chapter}>
-            <h2 className={styles.chapterTitle}>4. Armas de Fogo</h2>
-
-            <div className={styles.tableHead}>
-              <h3>Revólveres</h3>
-              <span className={styles.tableTag}>Médio · Pontaria</span>
-            </div>
-            <FirearmTable weapons={REVOLVERS} />
-            <p className={styles.footnote}>
-              * A Nagant é o único revólver da lista que aceita supressor de verdade. Sem ele, é barulhenta como
-              qualquer outra; com ele, vira a arma do assassino.
-            </p>
-
-            <div className={styles.tableHead}>
-              <h3>Pistolas Semiautomáticas</h3>
-              <span className={styles.tableTag}>Médio · Pontaria</span>
-            </div>
-            <FirearmTable weapons={PISTOLS} />
-
-            <div className={styles.tableHead}>
-              <h3>Rifles</h3>
-              <span className={styles.tableTag}>Longo · Pontaria · Duas Mãos</span>
-            </div>
-            <FirearmTable weapons={RIFLES} />
-
-            <div className={styles.tableHead}>
-              <h3>Espingardas</h3>
-              <span className={styles.tableTag}>Curto · Pontaria · Duas Mãos</span>
-            </div>
-            <FirearmTable weapons={SHOTGUNS} />
-
-            <div className={styles.tableHead}>
-              <h3>Submetralhadoras</h3>
-              <span className={styles.tableTag}>Médio · Pontaria · Duas Mãos</span>
-            </div>
-            <FirearmTable weapons={SMGS} />
-          </Reveal>
-
-          <Reveal as="div" className={styles.chapter}>
-            <h2 className={styles.chapterTitle}>5. Armas Brancas</h2>
-
-            <div className={styles.tableHead}>
-              <h3>Facas e Punhais</h3>
-              <span className={styles.tableTag}>Corpo a corpo · Combate</span>
-            </div>
-            <MeleeTable weapons={KNIVES} />
-
-            <div className={styles.tableHead}>
-              <h3>Espadas</h3>
-              <span className={styles.tableTag}>Corpo a corpo · Combate</span>
-            </div>
-            <MeleeTable weapons={SWORDS} />
-          </Reveal>
-
-          <Reveal as="div" className={styles.chapter}>
-            <h2 className={styles.chapterTitle}>6. Armas Improvisadas Comuns</h2>
-            <p className={styles.chapterSubtitle}>Corpo a corpo · Combate</p>
-            <MeleeTable weapons={IMPROVISED} />
-          </Reveal>
-
-          <Reveal as="div" className={styles.chapter}>
-            <h2 className={styles.chapterTitle}>7. Armas Históricas Ainda Encontradas</h2>
-            <MeleeTable weapons={HISTORICAL} />
-
-            <div className={styles.callout}>
-              <div className={styles.calloutTitle}>Notas de Mesa</div>
-              <p>
-                <strong>Proteção/armadura é opcional.</strong> Se você adotar, o traço Perfurante e o efeito do
-                Crítico (&ldquo;ignora proteção&rdquo;) passam a importar muito.
+              <div className={doc.tableHead}>
+                <h4>Pistolas Semiautomáticas</h4>
+                <span className={doc.tableTag}>Médio · Pontaria</span>
+              </div>
+              <FirearmTable weapons={PISTOLS} />
+              <p className={doc.footnote}>
+                Curto (nas pistolas de bolso): o alcance efetivo da arma é Curto, não o Médio da categoria.
               </p>
-              <p>
-                <strong>Ruidosa é o traço mais importante deste jogo.</strong> Num cenário de horror, descarregar um
-                rifle num corredor escuro raramente é grátis. Recompense quem escolhe a faca, a Nagant silenciada ou
-                o estrangulamento.
+
+              <div className={doc.tableHead}>
+                <h4>Rifles</h4>
+                <span className={doc.tableTag}>Longo · Pontaria · Duas Mãos</span>
+              </div>
+              <FirearmTable weapons={RIFLES} />
+
+              <div className={doc.tableHead}>
+                <h4>Espingardas</h4>
+                <span className={doc.tableTag}>Curto · Pontaria · Duas Mãos</span>
+              </div>
+              <FirearmTable weapons={SHOTGUNS} />
+
+              <div className={doc.tableHead}>
+                <h4>Submetralhadoras</h4>
+                <span className={doc.tableTag}>Médio · Pontaria · Duas Mãos</span>
+              </div>
+              <FirearmTable weapons={SMGS} />
+            </section>
+
+            <hr className={doc.rule} />
+
+            <section className={doc.panel} id="brancas">
+              <div className={doc.tab}>
+                <span className={doc.tabNum}>V.</span>
+                <h3>Armas Brancas</h3>
+              </div>
+
+              <div className={doc.tableHead}>
+                <h4>Facas e Punhais</h4>
+                <span className={doc.tableTag}>Corpo a corpo · Combate</span>
+              </div>
+              <MeleeTable weapons={KNIVES} />
+
+              <div className={doc.tableHead}>
+                <h4>Espadas</h4>
+                <span className={doc.tableTag}>Corpo a corpo · Combate</span>
+              </div>
+              <MeleeTable weapons={SWORDS} />
+            </section>
+
+            <hr className={doc.rule} />
+
+            <section className={doc.panel} id="improvisadas">
+              <div className={doc.tab}>
+                <span className={doc.tabNum}>VI.</span>
+                <h3>Armas Improvisadas Comuns</h3>
+              </div>
+              <p className={doc.note} style={{ marginBottom: "0.8rem" }}>
+                Corpo a corpo · Combate
               </p>
-              <p>
-                <strong>Munição escassa</strong> funciona melhor que munição infinita: faça o jogador anotar cada
-                tiro. O medo de ouvir o &ldquo;click&rdquo; do tambor vazio é parte do gênero.
-              </p>
-            </div>
-          </Reveal>
+              <MeleeTable weapons={IMPROVISED} />
+            </section>
+
+            <hr className={doc.rule} />
+
+            <section className={doc.panel} id="historicas">
+              <div className={doc.tab}>
+                <span className={doc.tabNum}>VII.</span>
+                <h3>Armas Históricas Ainda Encontradas</h3>
+              </div>
+              <MeleeTable weapons={HISTORICAL} />
+            </section>
+          </Dossier>
         </section>
       </article>
       <Footer />
