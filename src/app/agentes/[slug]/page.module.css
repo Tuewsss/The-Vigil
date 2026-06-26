@@ -21,6 +21,14 @@
   flex-wrap: wrap;
 }
 
+.photoColumn {
+  flex: none;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
 .photo {
   flex: none;
   width: 160px;
@@ -158,6 +166,40 @@
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 2rem;
+  color: var(--bone);
+}
+
+/* ---------- vida & sanidade (etiquetas tipo selo, presas à foto) ---------- */
+
+.vitalsAside {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.vital {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  padding: 0.4rem 0.65rem;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.vitalLabel {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blood-bright);
+}
+
+.vitalValue {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.4rem;
   color: var(--bone);
 }
 

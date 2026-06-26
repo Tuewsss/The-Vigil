@@ -1,0 +1,102 @@
+.section {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem clamp(1.2rem, 5vw, 3rem) 4rem;
+}
+
+.stamp {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blood-bright);
+  border: 2px solid var(--blood);
+  padding: 0.45rem 1.1rem;
+  transform: rotate(-5deg);
+  opacity: 0.85;
+  margin-bottom: 2.2rem;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 1.4rem;
+}
+
+.code {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(5rem, 16vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  color: var(--blood-bright);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.7);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  letter-spacing: 0.02em;
+  color: var(--bone);
+  margin-top: 1.2rem;
+  margin-bottom: 1.3rem;
+}
+
+.body {
+  max-width: 56ch;
+  color: var(--bone-dim);
+  font-size: 1.05rem;
+}
+
+.actions {
+  margin-top: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.primary,
+.secondary {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.8rem;
+  cursor: pointer;
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+
+.primary {
+  background: var(--blood);
+  border: 1px solid var(--blood);
+  color: var(--bone);
+}
+
+.primary:hover,
+.primary:focus-visible {
+  background: var(--blood-bright);
+  border-color: var(--blood-bright);
+}
+
+.secondary {
+  background: none;
+  border: 1px solid var(--brass-dim);
+  color: var(--bone-dim);
+}
+
+.secondary:hover,
+.secondary:focus-visible {
+  border-color: var(--brass);
+  color: var(--bone);
+}

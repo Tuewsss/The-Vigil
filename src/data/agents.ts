@@ -55,7 +55,15 @@ export const AGENTS: Agent[] = [
       "Venha, Madame Dabi irá te recepcionar como ninguém. Sente-se, seja servido pelas famosas \"Flappers\" da casa, relaxe os ombros e aproveite o espetáculo. E se quiser, pode até levantar para movimentar o esqueleto com uma inupta donzela presente.",
       "O ambiente era agradável, a não ser pelo cheiro de cigarro. Mas isso dá pra ser relevado ao observar os detalhes minuciosos dos lustres, o caimento impecável das cortinas, o Jazz que ecoava em seu auge e o som da vida acontecendo ali.",
     ],
-    attributes: { corpo: 1, menteEspirito: 1, socialSegredo: 1, sobrenatural: 1 },
+    attributes: { corpo: 2, menteEspirito: 3, socialSegredo: 3, sobrenatural: 1 },
+    skills: {
+      Furtividade: 3,
+      "Sangue Frio": 2,
+      Lábia: 2,
+      Encobrir: 2,
+      Reflexo: 2,
+      Pontaria: 1,
+    },
     missions: [],
   },
   {
@@ -93,4 +101,16 @@ export const AGENTS: Agent[] = [
 
 export function getAgent(slug: string): Agent | undefined {
   return AGENTS.find((agent) => agent.slug === slug);
+}
+
+export function getVida(agent: Agent): number {
+  const corpo = agent.attributes?.corpo ?? 0;
+  const vigor = agent.skills?.["Vigor"] ?? 0;
+  return 10 + corpo * 5 + vigor * 3;
+}
+
+export function getSanidade(agent: Agent): number {
+  const menteEspirito = agent.attributes?.menteEspirito ?? 0;
+  const sangueFrio = agent.skills?.["Sangue Frio"] ?? 0;
+  return 20 + menteEspirito * 5 + sangueFrio * 4;
 }

@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import sectionStyles from "@/components/Section.module.css";
-import { AGENTS, getAgent } from "@/data/agents";
+import { AGENTS, getAgent, getVida, getSanidade } from "@/data/agents";
 import styles from "./page.module.css";
 
 export function generateStaticParams() {
@@ -61,19 +61,34 @@ export default async function AgentPage({ params }: { params: Promise<{ slug: st
             ← Voltar ao arquivo
           </Link>
           <div className={styles.dossier}>
-            <div className={photoClassName}>
-              {agent.photo ? (
-                <Image
-                  src={agent.photo}
-                  alt={agent.name}
-                  fill
-                  sizes="160px"
-                  style={{ objectFit: "cover", objectPosition: "top center" }}
-                />
-              ) : agent.redacted ? (
-                "SEM REGISTRO FOTOGRÁFICO"
-              ) : (
-                agent.seal
+            <div className={styles.photoColumn}>
+              <div className={photoClassName}>
+                {agent.photo ? (
+                  <Image
+                    src={agent.photo}
+                    alt={agent.name}
+                    fill
+                    sizes="160px"
+                    style={{ objectFit: "cover", objectPosition: "top center" }}
+                  />
+                ) : agent.redacted ? (
+                  "SEM REGISTRO FOTOGRÁFICO"
+                ) : (
+                  agent.seal
+                )}
+              </div>
+
+              {agent.attributes && (
+                <div className={styles.vitalsAside}>
+                  <div className={styles.vital}>
+                    <span className={styles.vitalLabel}>Vida</span>
+                    <span className={styles.vitalValue}>{getVida(agent)}</span>
+                  </div>
+                  <div className={styles.vital}>
+                    <span className={styles.vitalLabel}>Sanidade</span>
+                    <span className={styles.vitalValue}>{getSanidade(agent)}</span>
+                  </div>
+                </div>
               )}
             </div>
             <div className={identityClassName}>
@@ -126,16 +141,6 @@ export default async function AgentPage({ params }: { params: Promise<{ slug: st
               ))}
             </div>
           )}
-        </section>
-
-        <section>
-          <div className={sectionStyles.eyebrow}>Histórico</div>
-          <h2 className={sectionStyles.heading}>Dossiê</h2>
-          {agent.bio.map((paragraph, index) => (
-            <p key={index} className={sectionStyles.body}>
-              {paragraph}
-            </p>
-          ))}
 
           {skillEntries.length > 0 && (
             <div className={styles.skillsGrid}>
@@ -153,6 +158,16 @@ export default async function AgentPage({ params }: { params: Promise<{ slug: st
               ))}
             </div>
           )}
+        </section>
+
+        <section>
+          <div className={sectionStyles.eyebrow}>Histórico</div>
+          <h2 className={sectionStyles.heading}>Dossiê</h2>
+          {agent.bio.map((paragraph, index) => (
+            <p key={index} className={sectionStyles.body}>
+              {paragraph}
+            </p>
+          ))}
         </section>
 
         {agent.missions.length > 0 && (
