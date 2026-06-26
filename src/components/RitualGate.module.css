@@ -1,0 +1,532 @@
+/* ── OVERLAY SHELL ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 3, 3, 0.94);
+  opacity: 0;
+  animation: backdropIn 0.5s ease forwards;
+}
+
+@keyframes backdropIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  z-index: 5;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--panel-edge);
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--bone-dim);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.closeBtn:hover,
+.closeBtn:focus-visible {
+  color: var(--bone);
+  border-color: var(--brass);
+}
+
+/* ── THEME ACCENTS ── */
+.overlay[data-theme="feiticaria"] {
+  --gate-ink: #c79bef;
+  --gate-glow: rgba(140, 55, 210, 0.65);
+  --gate-bright: #e3cdff;
+}
+
+.overlay[data-theme="sangue"] {
+  --gate-ink: #e0504f;
+  --gate-glow: rgba(220, 70, 60, 0.65);
+  --gate-bright: #ffb3b0;
+}
+
+.overlay[data-theme="ocultismo"] {
+  --gate-ink: #a5a3d7;
+  --gate-glow: rgba(110, 110, 170, 0.65);
+  --gate-bright: #d6d4f5;
+}
+
+/* ── STAGE (glyph + ring + copy) ── */
+.stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.overlay[data-phase="burst"] .stage,
+.overlay[data-phase="reveal"] .stage {
+  animation: stageFade 0.5s ease forwards;
+}
+
+@keyframes stageFade {
+  to {
+    opacity: 0;
+    transform: scale(0.92);
+    filter: blur(6px);
+  }
+}
+
+.overlay[data-phase="reveal"] .stage {
+  animation: none;
+  opacity: 0;
+}
+
+.pressable {
+  position: relative;
+  width: 168px;
+  height: 168px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+  user-select: none;
+}
+
+.pressable:focus-visible {
+  outline: 1px dashed var(--gate-ink, var(--brass));
+  outline-offset: 8px;
+}
+
+.overlay[data-phase="charged"] .pressable {
+  animation: chargePop 0.18s ease;
+}
+
+@keyframes chargePop {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.18);
+  }
+}
+
+.glyph {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  z-index: 1;
+  transition: opacity 0.15s linear;
+  animation: glyphBreathe 2.6s ease-in-out infinite;
+}
+
+@keyframes glyphBreathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.045);
+  }
+}
+
+.overlay[data-phase="charged"] .glyph,
+.overlay[data-phase="burst"] .glyph,
+.overlay[data-phase="reveal"] .glyph {
+  animation: none;
+  opacity: 1;
+}
+
+.glyphLine {
+  fill: none;
+  stroke: var(--gate-ink);
+  stroke-width: 1.4;
+}
+
+.glyphCore {
+  fill: var(--gate-ink);
+}
+
+.glyphDrop {
+  fill: var(--gate-ink);
+  filter: drop-shadow(0 0 10px var(--gate-glow));
+}
+
+.glyphIris {
+  fill: none;
+  stroke: var(--gate-ink);
+  stroke-width: 2;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ringTrack {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 2.5;
+}
+
+.ringFill {
+  fill: none;
+  stroke: var(--gate-ink);
+  stroke-width: 3;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px var(--gate-glow));
+  transition: stroke-dashoffset 0.05s linear;
+}
+
+.instruction {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  min-height: 1.4em;
+}
+
+/* ── LOCKED REVEAL (ocultismo, sem página própria) ── */
+.lockedReveal {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 440px;
+  padding: 0 1.5rem;
+  opacity: 0;
+  animation: lockedIn 0.6s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes lockedIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.lockedReveal p {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--bone);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+}
+
+.lockedClose {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.6rem;
+  border: 1px solid var(--gate-ink);
+  background: none;
+  color: var(--bone);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.lockedClose:hover,
+.lockedClose:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ══════════════════════════════════════════
+   BURST: SANGUE — a tela enche de sangue
+══════════════════════════════════════════ */
+.bloodFill {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bloodWave {
+  position: absolute;
+  left: -12%;
+  right: -12%;
+  bottom: -12%;
+  height: 0%;
+  background: linear-gradient(180deg, #c4262a 0%, #8c1216 45%, #3c0608 100%);
+  border-radius: 48% 48% 0 0 / 16% 16% 0 0;
+  box-shadow: 0 -40px 110px rgba(164, 22, 26, 0.55);
+  animation: bloodRise 1.15s cubic-bezier(0.55, 0, 0.4, 1) forwards;
+}
+
+.bloodWave::before,
+.bloodWave::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  width: 30%;
+  height: 46px;
+  background: inherit;
+  border-radius: 50%;
+  animation: dropPulse 1.15s ease forwards;
+}
+
+.bloodWave::before {
+  left: 10%;
+  animation-delay: 0.04s;
+}
+
+.bloodWave::after {
+  right: 14%;
+  animation-delay: 0.1s;
+}
+
+@keyframes bloodRise {
+  0% {
+    height: 0%;
+    border-radius: 48% 48% 0 0 / 20% 20% 0 0;
+  }
+  65% {
+    height: 112%;
+    border-radius: 46% 46% 0 0 / 8% 8% 0 0;
+  }
+  100% {
+    height: 135%;
+    border-radius: 0;
+  }
+}
+
+@keyframes dropPulse {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-16px) scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* ══════════════════════════════════════════
+   BURST: FEITIÇARIA — o ritual rompe em luz
+══════════════════════════════════════════ */
+.sigilBurst {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.sigilFlash {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gate-bright) 0%, var(--gate-glow) 35%, transparent 70%);
+  animation: sigilExpand 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+}
+
+@keyframes sigilExpand {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(36);
+    opacity: 0;
+  }
+}
+
+.sigilRays {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(1px);
+  opacity: 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--gate-glow) 8deg,
+    transparent 16deg,
+    transparent 80deg,
+    var(--gate-glow) 88deg,
+    transparent 96deg,
+    transparent 180deg,
+    var(--gate-glow) 188deg,
+    transparent 196deg,
+    transparent 260deg,
+    var(--gate-glow) 268deg,
+    transparent 276deg,
+    transparent 360deg
+  );
+  animation: sigilSpin 0.9s ease-out forwards;
+}
+
+@keyframes sigilSpin {
+  0% {
+    transform: rotate(0deg) scale(0.3);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: rotate(160deg) scale(1.7);
+    opacity: 0;
+  }
+}
+
+/* ══════════════════════════════════════════
+   BURST: OCULTISMO — o olho se abre
+══════════════════════════════════════════ */
+.eyeBurst {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.eyeShape {
+  position: relative;
+  width: min(64vw, 480px);
+  height: min(64vw, 480px);
+  transform: scaleY(0.04);
+  animation: eyeOpen 1.05s cubic-bezier(0.34, 1.4, 0.4, 1) forwards;
+}
+
+@keyframes eyeOpen {
+  0% {
+    transform: scaleY(0.04);
+  }
+  60% {
+    transform: scaleY(1.15);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.eyeSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.eyeWhite {
+  fill: #0d0a16;
+  stroke: var(--gate-ink);
+  stroke-width: 1.4;
+}
+
+.eyeIris {
+  fill: var(--gate-ink);
+  opacity: 0.85;
+  filter: drop-shadow(0 0 22px var(--gate-glow));
+  transform-origin: 100px 100px;
+  animation: irisPulse 1.05s ease forwards;
+}
+
+@keyframes irisPulse {
+  0%,
+  45% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.55);
+  }
+}
+
+.eyePupil {
+  fill: #050308;
+  transform-origin: 100px 100px;
+  animation: pupilDilate 1.05s ease forwards;
+}
+
+@keyframes pupilDilate {
+  0%,
+  35% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.2);
+  }
+}
+
+.eyeFlash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, var(--gate-bright) 0%, transparent 60%);
+  opacity: 0;
+  animation: eyeFlashPulse 1.05s ease forwards;
+}
+
+@keyframes eyeFlashPulse {
+  0%,
+  55% {
+    opacity: 0;
+  }
+  72% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .stage,
+  .pressable,
+  .glyph,
+  .bloodWave,
+  .bloodWave::before,
+  .bloodWave::after,
+  .sigilFlash,
+  .sigilRays,
+  .eyeShape,
+  .eyeIris,
+  .eyePupil,
+  .eyeFlash,
+  .lockedReveal {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .overlay[data-phase="burst"] .stage,
+  .overlay[data-phase="reveal"] .stage {
+    opacity: 0;
+  }
+
+  .lockedReveal {
+    opacity: 1;
+  }
+}

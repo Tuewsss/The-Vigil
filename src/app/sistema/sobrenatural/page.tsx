@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import OccultSheet from "@/components/OccultSheet";
+import RitualGate from "@/components/RitualGate";
 import styles from "@/components/Occult.module.css";
 
 export const metadata: Metadata = {
@@ -30,7 +31,7 @@ export default function SobrenaturalPage() {
             </p>
           </header>
 
-          <Link href="/sistema/sobrenatural/feiticaria" className={styles.cardLink}>
+          <RitualGate theme="feiticaria" href="/sistema/sobrenatural/feiticaria" className={styles.cardLink}>
             <OccultSheet
               theme="feiticaria"
               stamp="Feitiçaria"
@@ -63,9 +64,9 @@ export default function SobrenaturalPage() {
                 </div>
               </div>
             </OccultSheet>
-          </Link>
+          </RitualGate>
 
-          <Link href="/sistema/sobrenatural/sangue" className={styles.cardLink}>
+          <RitualGate theme="sangue" href="/sistema/sobrenatural/sangue" className={styles.cardLink}>
             <OccultSheet
               theme="sangue"
               stamp="Sangue"
@@ -102,9 +103,9 @@ export default function SobrenaturalPage() {
                 </div>
               </div>
             </OccultSheet>
-          </Link>
+          </RitualGate>
 
-          <div className={styles.locked}>
+          <RitualGate theme="ocultismo" className={styles.locked}>
             <OccultSheet
               theme="ocultismo"
               stamp="Ocultismo"
@@ -139,7 +140,7 @@ export default function SobrenaturalPage() {
               </div>
               <span className={styles.lockedTag}>[ ainda em catalogação ]</span>
             </OccultSheet>
-          </div>
+          </RitualGate>
         </div>
       </div>
       <Footer />
