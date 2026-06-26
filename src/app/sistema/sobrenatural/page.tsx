@@ -105,7 +105,7 @@ export default function SobrenaturalPage() {
             </OccultSheet>
           </RitualGate>
 
-          <RitualGate theme="ocultismo" className={styles.locked}>
+          <RitualGate theme="ocultismo" href="/sistema/sobrenatural/ocultismo" className={styles.cardLink}>
             <OccultSheet
               theme="ocultismo"
               stamp="Ocultismo"
@@ -138,7 +138,6 @@ export default function SobrenaturalPage() {
                   <span className={styles.lrowV}>Toda revelação tem peso. O uso do Ocultismo quase sempre cobra da Sanidade de quem invoca.</span>
                 </div>
               </div>
-              <span className={styles.lockedTag}>[ ainda em catalogação ]</span>
             </OccultSheet>
           </RitualGate>
         </div>
