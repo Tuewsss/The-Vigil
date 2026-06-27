@@ -241,8 +241,77 @@ export const HOUSES: House[] = [
     epithet: "A mão que costura a trégua",
     description:
       "Os diplomatas. Vieram da Itália sem o sangue antigo da ordem e fizeram o que a espada nunca fez: estender a mão ao outro lado. Abriram as portas aos não naturais e teceram as primeiras tréguas — mas os puristas já sussurram que a lealdade dos Barone se divide.",
-    history: [],
-    genealogy: [],
+    history: [
+      {
+        title: "Capítulo I — Milão, 1879",
+        location: "Itália — Inglaterra, 1879",
+        paragraphs: [
+          "A família Barone não era nobre por sangue, mas por caráter — o tipo de distinção que o dinheiro pode comprar o uniforme, mas jamais o porte. Originários de Milão, os Barone pertenciam ao estrato de uma burguesia italiana cultivada: comerciantes bem-sucedidos, de olhos voltados para o futuro e raízes fundadas na dignidade do trabalho honesto.",
+          "Conte Emilio Barone, o patriarca, construíra uma pequena fortuna no comércio de tecidos finos, mas os últimos anos trouxeram o peso de uma Itália ainda em vias de se reconhecer como nação. A instabilidade política, os impostos sufocantes do jovem Reino e o desejo de horizontes mais amplos empurraram a família em direção ao Ocidente — rumo à Inglaterra, à grande Londres que prometia ordem, prosperidade e anonimato para quem chegasse com dinheiro e discrição.",
+          "Em março de 1879, Emilio e sua esposa Carlotta Barone, nascida Ferretti, embarcaram de Gênova com os dois filhos em direção a Southampton. Eles não fugiam da Itália. Escolhiam algo maior.",
+        ],
+      },
+      {
+        title: "Capítulo II — Adriano e Fiamma",
+        paragraphs: [
+          "Alto, de ombros largos e expressão calculada, Adriano Barone herdara do pai a frieza estratégica e o talento para ler pessoas. Estudara Direito na Universidade de Pavia sem jamais ter a intenção de exercê-lo — para ele, o Direito era uma linguagem, e toda linguagem era uma ferramenta. Falava inglês com sotaque carregado mas vocabulário preciso, aprendido por correspondência com os parceiros comerciais do pai.",
+          "Adriano era o tipo de homem que entrava numa sala e, antes de dizer uma palavra, já havia mapeado as saídas. Desconfiado por natureza, leal por convicção — reservado, metódico, protetor, com uma responsabilidade quase patológica pelo bem-estar da irmã mais nova.",
+          "Fiamma Barone nascera em Milão a 3 de abril de 1862. O nome fora escolhido pela avó materna, que dizia ter visto a menina nascer com os olhos já abertos, numa expressão que não era de choro, mas de curiosidade. Fiamma — chama. O nome a seguiria como uma profecia.",
+          "Pequena de estatura, rápida de pensamento e de língua, Fiamma era tudo o que o irmão não era em expressividade. Onde Adriano calculava, ela intuía; onde ele fechava portas, ela as abria, às vezes sem pedir permissão. Estudara Literatura e Filosofia com a tutora particular que o pai mantinha em casa, e chegara a Londres com mais livros na bagagem do que roupas. Curiosa, empática, persuasiva, possuía o dom raro de encontrar pontos de conexão entre pessoas de mundos completamente distintos — podia parecer ingênua; raramente era.",
+          "⎯⎯⎯ A Livraria de Bloomsbury · 1879 ⎯⎯⎯",
+          "A família se instalou em Marylebone, num sobrado de três andares que Emilio alugara através de um intermediário antes mesmo de chegar à cidade. O encontro com Emma Clement não foi acidental — nada na vida de Emma era. Ela notara os Barone poucas semanas após a chegada deles, pela razão mais mundana possível: Fiamma entrara na mesma livraria de livros raros em Bloomsbury que Emma frequentava toda quinta-feira, e as duas disputaram, com cortesia excessiva e crescente tensão, o único exemplar disponível de um volume de filosofia esotérica medieval em latim.",
+          "Fiamma venceu a disputa. Emma gostou muito disso. O convite para o chá na mansão Clement veio três dias depois, entregue por um mensageiro sem rosto. A nota, escrita com a caligrafia precisa de Emma, dizia apenas: “Traga seu irmão. Tenho uma proposta que pode interessar a pessoas que não têm medo de perguntas sem resposta fácil.”",
+        ],
+      },
+      {
+        title: "Capítulo III — O Acordo de Maio",
+        location: "Londres, 1879–1880",
+        paragraphs: [
+          "Emma Clement era, em 1879, líder da Vigília desde a morte da mãe, Elizabeth, no ano anterior — um cargo herdado de modo abrupto, em circunstâncias que a organização preferia não documentar. Em pouco mais de um ano à frente da ordem, já começava a transformá-la de um corpo reativo em algo mais parecido com um corpo diplomático — uma instituição que acreditava que o sobrenatural não era um problema a ser eliminado, mas uma realidade a ser administrada. Sua grande missão era uma paz formal entre o mundo natural e o não-natural: não uma trégua silenciosa por inércia e medo mútuo, mas uma paz com estrutura, com acordos, com testemunhas.",
+          "A Vigília estava dividida quanto a isso. Havia quem visse a ideia como idealismo perigoso, quem a visse como traição, e quem simplesmente não acreditasse que fosse possível. Emma precisava de pessoas de fora — sem o peso das velhas disputas internas, sem dívidas com nenhuma das facções. Nos Barone, encontrou algo mais raro ainda: dois irmãos complementares, cujos defeitos e virtudes se encaixavam como engrenagens, e que não tinham absolutamente nada a perder.",
+          "O que os registros internos da Vigília chamariam de A Missão dos Barone nunca recebeu um nome oficial, nunca foi votada em conselho, nunca foi formalmente sancionada — Emma não pediu permissão; raramente pedia. A missão consistia em estabelecer contato com representantes de três facções do mundo sobrenatural que habitavam Londres havia décadas, cada uma com seus próprios códigos, territórios e ressentimentos históricos, e chegar a um acordo que garantisse a coexistência sem violência.",
+          "Adriano foi designado negociador formal: sua formação jurídica e sua capacidade de permanecer impassível diante de qualquer coisa o tornavam o interlocutor ideal. Fiamma foi sua intérprete — não apenas de línguas, mas de intenções, com o dom de perceber o que cada parte realmente queria por baixo do que declarava. Emma atuava nas sombras, abrindo portas, garantindo a segurança dos encontros e fornecendo o contexto histórico que os irmãos precisavam para não cometer erros irreparáveis.",
+          "⎯⎯⎯ A Noite de Março · 1880 ⎯⎯⎯",
+          "As negociações duraram doze meses, e houve momentos em que pareceram prestes a fracassar. Numa noite de março de 1880, Adriano voltou para casa com o casaco rasgado, e Fiamma passou as horas seguintes com os olhos vermelhos, sem dizer uma palavra a ninguém. Nenhum dos dois jamais descreveu o que havia acontecido.",
+          "Em maio de 1880, os acordos foram assinados. Não havia champanhe, não havia discursos — Emma não documentou a cerimônia nos arquivos oficiais da Vigília, uma omissão deliberada para proteger todas as partes envolvidas. O que existia era um conjunto de termos simples, redigidos por Adriano ao longo de semanas de negociação, revisados por Fiamma e aprovados por Emma: uma estrutura de não agressão mútua, protocolos para a resolução de conflitos, e o reconhecimento implícito de que a presença do sobrenatural em Londres era um fato, não uma aberração a ser corrigida.",
+          "A paz nunca foi perfeita. Nunca seria. Mas era real, e durou. Nos anos seguintes, a Vigília tomaria lentamente conhecimento do que havia sido feito, sem nunca debater formalmente os termos do acordo — o que não é oficialmente reconhecido não pode ser oficialmente questionado.",
+          "Adriano Barone nunca retornou à Itália. Permaneceu em Londres, onde abriu um escritório de consultoria discreta, ostensivamente voltado a famílias estrangeiras que desejavam estabelecer negócios na Inglaterra, e manteve laços informais com a Vigília por décadas. Fiamma Barone tornou-se uma das figuras mais singulares dos círculos intelectuais londrinos — uma italiana que escrevia em inglês sobre filosofia, frequentava salões literários e sabia exatamente que perguntas não fazer em voz alta. Nunca se casou, e manteve correspondência intensa com Emma Clement até a morte desta, ainda em 1880. Em 1920, ambos seguem em Londres — Adriano com mais de sessenta anos, Fiamma perto dos sessenta —, os dois últimos a saber de primeira mão o que custou aquela paz.",
+          "Emma nunca falou publicamente sobre os Barone. Em seus arquivos pessoais há apenas uma anotação inicial — “Chegaram sem nome nesta terra. Partiram sem precisar de um.” — e, meses depois, uma segunda, sem data: “Há pessoas que chegam à sua vida sem aviso e partem sem cerimônia, e só depois você percebe que foi exatamente isso que as tornou indispensáveis.”",
+        ],
+      },
+    ],
+    genealogy: [
+      {
+        id: "emilio-barone",
+        name: "Emilio Barone",
+        status: "dead",
+        years: "1829–1901",
+        role: "Patriarca · comerciante de tecidos finos",
+        spouse: {
+          id: "carlotta-barone",
+          name: "Carlotta Ferretti Barone",
+          status: "dead",
+          years: "1833–1897",
+          role: "Matriarca",
+        },
+        children: [
+          {
+            id: "adriano-barone",
+            name: "Adriano Barone",
+            status: "alive",
+            years: "1857–",
+            role: "Negociador do Acordo de Maio",
+          },
+          {
+            id: "fiamma-barone",
+            name: "Fiamma Barone",
+            status: "alive",
+            years: "1862–",
+            role: "Intérprete de intenções · filósofa",
+          },
+        ],
+      },
+    ],
   },
 ];
 
