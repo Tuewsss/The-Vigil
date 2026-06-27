@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
 import OathPanel from "./OathPanel";
+import RelicEasterEgg from "./RelicEasterEgg";
 import sectionStyles from "./Section.module.css";
 
 export default function RelicSection() {
@@ -8,7 +9,8 @@ export default function RelicSection() {
       <div className={sectionStyles.eyebrow}>Briefing III — A Relíquia</div>
       <h2 className={sectionStyles.heading}>Sanguis Sanctus</h2>
       <Reveal as="p" className={sectionStyles.body}>
-        No coração da ordem repousa o <span className={sectionStyles.relic}>Santo Sangue</span> — uma relíquia dita
+        No coração da ordem repousa o{" "}
+        <RelicEasterEgg className={sectionStyles.relic}>Santo Sangue</RelicEasterEgg> — uma relíquia dita
         ser sangue de um santo, ou de algo muito mais antigo e perigoso. Foi sobre ele que homens e criaturas juraram,
         em outra era, a trégua que ainda segura o mundo.
       </Reveal>
