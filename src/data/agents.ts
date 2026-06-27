@@ -94,7 +94,15 @@ export const AGENTS: Agent[] = [
       "Cada baile aumentava seu sentimento contraditório. Por um lado, sentia-se fascinada pela emoção do segredo; por outro, carregava uma culpa crescente ao olhar para William, que continuava confiando nela sem reservas.",
       "A situação tornava-se ainda mais dolorosa porque, nos bastidores do Cabaret da Madame Dabi, William frequentemente demonstrava orgulho da esposa. Quando ela era convidada para uma apresentação especial, ele costumava observá-la dos bastidores com admiração genuína, convencido de que havia encontrado a mulher perfeita. Carmita sorria para ele, aceitava flores após os espetáculos e agradecia seus elogios, enquanto escondia a verdade que poderia destruir tudo.",
     ],
-    attributes: { corpo: 1, menteEspirito: 1, socialSegredo: 1, sobrenatural: 1 },
+    attributes: { corpo: 2, menteEspirito: 3, socialSegredo: 2, sobrenatural: 2 },
+    skills: {
+      Pontaria: 2,
+      Reflexo: 1,
+      Furtividade: 2,
+      "Sangue Frio": 3,
+      Lábia: 2,
+      Encobrir: 2,
+    },
     missions: [],
   },
 ];
